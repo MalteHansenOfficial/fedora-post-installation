@@ -7,10 +7,10 @@ This project focuses on a clean, opinionated Fedora setup without becoming overl
 
 ## 📚 Table of Contents
 
-- [**🛠️ Requirements**]()
-- [**💻 Installation Instructions**]()
-- [**🧠 After Installation**]()
-- [**✨ Features Overview**]()
+- [**🛠️ Requirements**](#%EF%B8%8F-requirements)
+- [**💻 Installation Instructions**](#-installation-instructions)
+- [**🧠 After Installation**](#-after-installation)
+- [**✨ Features Overview**](#-features-overview)
 
 ---
 

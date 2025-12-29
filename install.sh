@@ -13,9 +13,6 @@ USER_NAME=$(logname)
 USER_HOME=/home/$(logname)
 SCRIPT_PATH=$(dirname "$(realpath "$0")")
 
-# Clean cache
-dnf clean all
-
 # Disable automatic suspension
 sudo -u "$USER_NAME" XDG_RUNTIME_DIR="/run/user/$(id -u "$USER_NAME")" gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
 sudo -u "$USER_NAME" XDG_RUNTIME_DIR="/run/user/$(id -u "$USER_NAME")" gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing'

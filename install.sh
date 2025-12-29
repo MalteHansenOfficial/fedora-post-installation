@@ -13,9 +13,13 @@ USER_NAME=$(logname)
 USER_HOME=/home/$(logname)
 SCRIPT_PATH=$(dirname "$(realpath "$0")")
 
+# Clean cache
+dnf clean all
+
 # Disable automatic suspension
 sudo -u "$USER_NAME" XDG_RUNTIME_DIR="/run/user/$(id -u "$USER_NAME")" gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
 sudo -u "$USER_NAME" XDG_RUNTIME_DIR="/run/user/$(id -u "$USER_NAME")" gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing'
+sudo -u "$USER_NAME" XDG_RUNTIME_DIR="/run/user/$(id -u "$USER_NAME")" gsettings set org.gnome.desktop.session idle-delay 0
 
 # Enable RPM Fusion Repositories
 dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
@@ -97,7 +101,7 @@ if [ ! -f $USER_HOME/.config/autostart/kitty.desktop ]; then
     cat <<EOF > $USER_HOME/.config/autostart/kitty.desktop
 [Desktop Entry]
 Type=Application
-Exec=kitty
+Exec=kitty --start-as maximized
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
@@ -117,6 +121,7 @@ sudo -u "$USER_NAME" XDG_RUNTIME_DIR="/run/user/$(id -u	"$USER_NAME")" gsettings
 
 # Apply Appearance settings
 sudo -u "$USER_NAME" XDG_RUNTIME_DIR="/run/user/$(id -u	"$USER_NAME")" gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+sudo -u "$USER_NAME" XDG_RUNTIME_DIR="/run/user/$(id -u	"$USER_NAME")" gsettings set org.gnome.desktop.interface accent-color 'blue'
 
 # Apply Multitasking settings
 sudo -u "$USER_NAME" XDG_RUNTIME_DIR="/run/user/$(id -u	"$USER_NAME")" gsettings set org.gnome.desktop.interface enable-hot-corners false
@@ -135,7 +140,7 @@ CUSTOM1="$BASE/custom1/"
 sudo -u "$USER_NAME" XDG_RUNTIME_DIR="/run/user/$(id -u	"$USER_NAME")" gsettings set $SCHEMA custom-keybindings "['$CUSTOM0', '$CUSTOM1']"
 
 sudo -u "$USER_NAME" XDG_RUNTIME_DIR="/run/user/$(id -u	"$USER_NAME")" gsettings set $SCHEMA.custom-keybinding:$CUSTOM0 name 'Terminal'
-sudo -u "$USER_NAME" XDG_RUNTIME_DIR="/run/user/$(id -u	"$USER_NAME")" gsettings set $SCHEMA.custom-keybinding:$CUSTOM0 command 'kitty'
+sudo -u "$USER_NAME" XDG_RUNTIME_DIR="/run/user/$(id -u	"$USER_NAME")" gsettings set $SCHEMA.custom-keybinding:$CUSTOM0 command 'kitty --start-as maximized'
 sudo -u "$USER_NAME" XDG_RUNTIME_DIR="/run/user/$(id -u	"$USER_NAME")" gsettings set $SCHEMA.custom-keybinding:$CUSTOM0 binding '<Primary><Alt>t'
 
 sudo -u "$USER_NAME" XDG_RUNTIME_DIR="/run/user/$(id -u	"$USER_NAME")" gsettings set $SCHEMA.custom-keybinding:$CUSTOM1 name 'Browser'
@@ -156,7 +161,11 @@ done
 sudo -u "$USER_NAME" xdg-settings set default-web-browser chromium-browser.desktop
 
 echo -e "\n\n\n"
-echo "✅ Script finished!"
-echo "⚠️ Reboot recommended."
-echo "⚠️ Note: if you installed additional graphic  drivers, please wait for ~5 minutes for the kernel modules to be built."
-
+echo "✅ Script finished! Reboot recommended."
+echo "⚠️ Note: if you installed additional graphics drivers, please wait for ~5 minutes for the kernel modules to be built.\n"
+echo "✨ Optionally:"
+echo "Install my clean, modular Neovim Config: https://github.com/MalteHansenOfficial/.config"
+echo "Install Space Bar: https://extensions.gnome.org/extension/5090/space-bar/"
+echo "Install Clipboard Indicator: https://extensions.gnome.org/extension/779/clipboard-indicator/"
+echo "Install Color Picker: https://extensions.gnome.org/extension/3396/color-picker/"
+echo "Install Vitals: https://extensions.gnome.org/extension/1460/vitals/"

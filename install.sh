@@ -157,9 +157,6 @@ for i in {1..9}; do
   sudo -u "$USER_NAME" XDG_RUNTIME_DIR="/run/user/$(id -u	"$USER_NAME")" gsettings set org.gnome.shell.keybindings switch-to-application-$i "[]"
 done
 
-# Set default web browser
-sudo -u "$USER_NAME" xdg-settings set default-web-browser chromium-browser.desktop
-
 echo -e "\n\n\n"
 echo "✅ Script finished! Reboot recommended."
 echo "⚠️ Note: if you installed additional graphics drivers, please wait for ~5 minutes for the kernel modules to be built.\n"

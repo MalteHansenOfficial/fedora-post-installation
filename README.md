@@ -14,6 +14,13 @@ This project focuses on a clean, opinionated Fedora setup without becoming overl
 
 ---
 
+## Screenshot after using the installation script:
+
+![Desktop](desktop.png)
+![Terminal](terminal.png)
+
+---
+
 ## 🛠️ Requirements
 ### ⚙️ System
 

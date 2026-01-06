@@ -1,3 +1,2 @@
 com.discordapp.Discord
 com.spotify.Client
-com.visualstudio.code
